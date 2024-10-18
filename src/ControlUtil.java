@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class ControlUtil {
 
     public String searchList(List<Customer> customerList, String searchedFor) {
-        String activeUser = "kund";
-        String expiredUser = "före detta kund";
-        String incorrectUser = "obehörig eller inkorrekt inmatning";
+        String activeUser = "Medlem ";
+        String expiredUser = "Före detta medlem ";
+        String incorrectUser = "Obehörig, alternativt inkorrekt inmatning";
         String toReturn = incorrectUser;
         String temp;
         LocalDate currentDate = LocalDate.now();
@@ -15,12 +15,12 @@ public class ControlUtil {
         try (Scanner sc = new Scanner(String.valueOf(customerList))) {
             for (Customer c : customerList) {
                 temp = sc.nextLine();
-                if (temp.toLowerCase().contains(searchedFor)) {
+                if (temp.toLowerCase().replace("-","").contains(searchedFor)) {
                     if (currentDate.minusYears(1).isBefore(c.getMembershipPaid())) {
-                        toReturn = activeUser;
+                        toReturn = (activeUser + c);
                         break;
                     } else if (currentDate.minusYears(1).isAfter(c.getMembershipPaid())) {
-                        toReturn = expiredUser;
+                        toReturn = (expiredUser + c);
                         break;
                     }
                 }

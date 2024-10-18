@@ -37,6 +37,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return  idNumber + "," + name + ","  + membershipPaid + "\n";
+        return idNumber + "\t" + name + "\t" + membershipPaid + "\n";
     }
 }

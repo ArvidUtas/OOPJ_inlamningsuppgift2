@@ -30,12 +30,11 @@ public class IOUtil {
         return customerList;
     }
 
-    public void printToFile(Customer customer, String outpath) {
-//        String outpath = "src/PTlogg.txt";
+    public void printToFile(String customer, String outpath) {
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outpath, true))) {
-            writer.write(customer.getIdNumber() + "\t\t" + customer.getName() + "\t\t" + dateTime +"\n");
+            writer.write(customer.trim() + "\t\t" + dateTime +"\n");
             writer.flush();
         } catch (IOException ex) {
             throw new RuntimeException(ex);

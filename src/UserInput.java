@@ -11,14 +11,13 @@ public class UserInput {
         else {
             sc = new Scanner(System.in);
         }
-        while (sc.hasNext()) {
+        System.out.println("Ange namn eller 10-siffrigt personnummer:");
             try{
-                System.out.println("Ange namn eller 10-siffrigt personnummer:");
                 input = sc.nextLine();
             } catch (Exception e) {
                 System.out.println("Okänt fel");
                 e.printStackTrace();
-            }
+                //TODO: fixa catchar och bättre exceptions
         }
         return input.trim().toLowerCase().replace("-","");
     }
