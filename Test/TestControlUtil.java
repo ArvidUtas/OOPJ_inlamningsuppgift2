@@ -1,13 +1,11 @@
 import org.junit.jupiter.api.Test;
-
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class TestControlUtil {
     ControlUtil cu = new ControlUtil();
     String activeUser = "7703021234";
-    String activeUserName = "Alhambra Aromes";
+    String activeUserName = "alhambra aromes";
     String expiredUser = "8512021234";
     String incorrectUser = "8001011234";
 
