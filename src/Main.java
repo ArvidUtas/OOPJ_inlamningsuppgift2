@@ -1,5 +1,3 @@
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
 
 public class Main {
@@ -9,13 +7,18 @@ public class Main {
         ControlUtil controlUtil = new ControlUtil();
         List<Customer> customerList = ioUtil.getList();
         String outPath = "src/PTlogg.txt";
+        boolean loop = true;
 
-        while (true) { //TODO gör bättre loop
+        while (loop) {
             String searchedFor = userInput.getUserInput(false, null);
-            String customerIs = controlUtil.searchList(customerList, searchedFor);
-            System.out.println("Kunden är: " + customerIs);
-            if (customerIs.startsWith("Medlem")) {
-                ioUtil.printToFile(customerIs, outPath);
+            if (searchedFor.equalsIgnoreCase("exit"))
+                loop = false;
+            else {
+                String customerIs = controlUtil.searchList(customerList, searchedFor);
+                System.out.println("Kunden är: " + customerIs);
+                if (customerIs.startsWith("Medlem")) {
+                    ioUtil.printToFile(customerIs, outPath);
+                }
             }
         }
     }

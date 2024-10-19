@@ -11,7 +11,7 @@ public class UserInput {
         else {
             sc = new Scanner(System.in);
         }
-        System.out.println("Ange namn eller 10-siffrigt personnummer:");
+        System.out.println("Ange namn eller 10-siffrigt personnummer (\"exit\" för att avsluta):");
             try{
                 input = sc.nextLine();
             } catch (Exception e) {
