@@ -11,32 +11,20 @@ public class Customer {
         this.membershipPaid = membershipPaid;
     }
 
-    public String getIdNumber() {
-        return idNumber;
+    public LocalDate getMembershipPaid() {
+        return membershipPaid;
     }
 
-    public void setIdNumber(String idNumber) {
-        this.idNumber = idNumber;
+    public String getIdNumber() {
+        return idNumber;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public LocalDate getMembershipPaid() {
-        return membershipPaid;
-    }
-
-    public void setMembershipPaid(LocalDate membershipPaid) {
-        this.membershipPaid = membershipPaid;
-    }
-
     @Override
     public String toString() {
-        return idNumber + "\t" + name + "\t" + membershipPaid + "\n";
+        return "\t" + idNumber + "\t" + name + "\t" + membershipPaid;
     }
 }

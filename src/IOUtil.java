@@ -34,7 +34,8 @@ public class IOUtil {
         String dateTime = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(outpath, true))) {
-            writer.write(customer.trim() + "\t\t" + dateTime +"\n");
+            writer.write(customer.substring(customer.indexOf("\t") + 1, customer.lastIndexOf("\t")) +
+                    "\t" + dateTime +"\n");
             writer.flush();
         } catch (IOException ex) {
             throw new RuntimeException(ex);

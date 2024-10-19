@@ -7,7 +7,7 @@ public class TestUserInput {
     @Test
     void getUserInputTest() {
 
-        String testinput1 = " James Brown ";
+        String testinput1 = " James brown ";
         String testinput2 = " 19010101-1234";
 
         assertEquals("james brown", ui.getUserInput(true, testinput1));

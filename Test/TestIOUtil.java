@@ -12,6 +12,10 @@ public class TestIOUtil {
         List<Customer> customerList = ioUtil.getList();
         assertEquals(14, customerList.size());
         assertNotEquals(0, customerList.size());
+        assertEquals("7805211234", customerList.getLast().getIdNumber());
+        assertEquals("Nahema Ninsson", customerList.getLast().getName());
+        assertEquals("7703021234", customerList.getFirst().getIdNumber());
+        assertEquals("Alhambra Aromes", customerList.getFirst().getName());
     }
 
     @Test
@@ -35,9 +39,9 @@ public class TestIOUtil {
             String temp = buf.readLine();
             assertTrue(temp.startsWith("1234567890"));
             temp = buf.readLine();
-            assertTrue(temp.startsWith("1234567899"));
+            assertTrue(temp.contains("Sanna Annsson"));
             temp = buf.readLine();
-            assertTrue(temp.startsWith("1234567800"));
+            assertFalse(temp.endsWith("2022-07-01"));
         } catch (IOException e) {
             e.printStackTrace();
         }
