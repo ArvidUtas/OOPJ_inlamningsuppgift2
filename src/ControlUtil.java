@@ -9,13 +9,11 @@ public class ControlUtil {
         String expiredUser = "Före detta medlem ";
         String incorrectUser = "Obehörig, alternativt inkorrekt inmatning";
         String toReturn = incorrectUser;
-        String temp;
+//        String temp;
         LocalDate currentDate = LocalDate.now();
 
-        try (Scanner sc = new Scanner(String.valueOf(customerList))) {
             for (Customer c : customerList) {
-                temp = sc.nextLine();
-                if (temp.toLowerCase().replace("-","").contains(searchedFor)) {
+                if (c.toString().toLowerCase().replace("-","").contains(searchedFor)) {
                     if (currentDate.minusYears(1).isBefore(c.getMembershipPaid())) {
                         toReturn = (activeUser + c);
                         break;
@@ -25,7 +23,21 @@ public class ControlUtil {
                     }
                 }
             }
-        }
+
+//        try (Scanner sc = new Scanner(String.valueOf(customerList))) {
+//            for (Customer c : customerList) {
+//                temp = sc.nextLine();
+//                if (temp.toLowerCase().replace("-", "").contains(searchedFor)) {
+//                    if (currentDate.minusYears(1).isBefore(c.getMembershipPaid())) {
+//                        toReturn = (activeUser + c);
+//                        break;
+//                    } else if (currentDate.minusYears(1).isAfter(c.getMembershipPaid())) {
+//                        toReturn = (expiredUser + c);
+//                        break;
+//                    }
+//                }
+//            }
+//        }
         return toReturn;
     }
 }

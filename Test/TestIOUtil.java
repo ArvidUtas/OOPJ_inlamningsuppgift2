@@ -23,12 +23,13 @@ public class TestIOUtil {
         //to empty file:
         try(PrintWriter writer = new PrintWriter(outPath)) {
             writer.print("");
+            writer.flush();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        ioUtil.printToFile(c1, outPath);
-        ioUtil.printToFile(c2, outPath);
-        ioUtil.printToFile(c3, outPath);
+        ioUtil.printToFile(c1.toString(), outPath);
+        ioUtil.printToFile(c2.toString(), outPath);
+        ioUtil.printToFile(c3.toString(), outPath);
 
         try(BufferedReader buf = new BufferedReader(new FileReader(outPath))){
             String temp = buf.readLine();

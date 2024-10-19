@@ -13,10 +13,14 @@ public class TestControlUtil {
     void searchListTest() {
         IOUtil ioUtil = new IOUtil();
         List<Customer> customerList = ioUtil.getList();
-        assertEquals("Medlem", cu.searchList(customerList, activeUser));
-        assertEquals("Medlem", cu.searchList(customerList, activeUserName));
-        assertEquals("Före detta medlem", cu.searchList(customerList, expiredUser));
-        assertEquals("Obehörig, alternativt inkorrekt inmatning", cu.searchList(customerList, incorrectUser));
+        assertEquals("Medlem 7703021234\tAlhambra Aromes\t2024-07-01\n",
+                cu.searchList(customerList, activeUser));
+        assertEquals("Medlem 7703021234\tAlhambra Aromes\t2024-07-01\n",
+                cu.searchList(customerList, activeUserName));
+        assertEquals("Före detta medlem 8512021234\tChamade Coriola\t2018-03-12\n",
+                cu.searchList(customerList, expiredUser));
+        assertEquals("Obehörig, alternativt inkorrekt inmatning",
+                cu.searchList(customerList, incorrectUser));
         assertNotEquals(cu.searchList(customerList, expiredUser), cu.searchList(customerList, activeUser));
     }
 }
