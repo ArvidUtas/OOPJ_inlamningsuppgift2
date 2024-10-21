@@ -42,7 +42,13 @@ public class TestIOUtil {
             assertTrue(temp.contains("Sanna Annsson"));
             temp = buf.readLine();
             assertFalse(temp.endsWith("2022-07-01"));
-        } catch (IOException e) {
+        }
+        catch (FileNotFoundException e) {
+            System.out.println("File could not be found.");
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            System.out.println("IO exception");
             e.printStackTrace();
         }
     }

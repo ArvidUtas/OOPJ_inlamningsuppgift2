@@ -1,3 +1,4 @@
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class UserInput {
@@ -12,13 +13,18 @@ public class UserInput {
             sc = new Scanner(System.in);
         }
         System.out.println("Ange namn eller 10-siffrigt personnummer (\"exit\" för att avsluta):");
-            try{
-                input = sc.nextLine();
-            } catch (Exception e) {
-                System.out.println("Okänt fel");
-                e.printStackTrace();
-                //TODO: fixa catchar och bättre exceptions
+        try {
+            input = sc.nextLine();
+        } catch (NoSuchElementException e) {
+            System.err.println("Indata saknas");
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            System.err.println("Inläsningens ström är stängd");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Okänt fel");
+            e.printStackTrace();
         }
-        return input.trim().toLowerCase().replace("-","");
+        return input.trim();
     }
 }

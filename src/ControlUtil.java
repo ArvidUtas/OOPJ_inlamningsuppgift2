@@ -11,15 +11,14 @@ public class ControlUtil {
         LocalDate currentDate = LocalDate.now();
 
             for (Customer c : customerList) {
-                if (c.getName().toLowerCase().replace("-","").contains(searchedFor) ||
-                        c.getIdNumber().replace("-","").contains(searchedFor)) {
+                if (c.getName().equalsIgnoreCase(searchedFor) ||
+                        c.getIdNumber().equals(searchedFor.replace("-",""))) {
                     if (currentDate.minusYears(1).isBefore(c.getMembershipPaid())) {
                         toReturn = (activeUser + c);
-                        break;
-                    } else if (currentDate.minusYears(1).isAfter(c.getMembershipPaid())) {
+                    } else {
                         toReturn = (expiredUser + c);
-                        break;
                     }
+                    break;
                 }
             }
         return toReturn;

@@ -4,10 +4,7 @@ import java.nio.file.Paths;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
+import java.util.*;
 
 public class IOUtil {
 
@@ -17,15 +14,26 @@ public class IOUtil {
         String idNumber;
         String name;
         String membershipPaid;
+
         try (Scanner sc = new Scanner(inPath)) {
             while (sc.hasNext()) {
-                idNumber = sc.useDelimiter("[,\n]").next();  //TODO: varför funkar det här?
+                idNumber = sc.useDelimiter("[,\n]").next();
                 name = sc.next().trim();
                 membershipPaid = sc.next().trim();
                 customerList.add(new Customer(idNumber, name, LocalDate.parse(membershipPaid)));
             }
-        } catch (NoSuchElementException | IOException e) {
-            // TODO: fixa catchar
+        } catch (NoSuchElementException e) {
+            System.err.println("Indata saknas");
+            e.printStackTrace();
+        } catch (IllegalStateException e) {
+            System.err.println("Inläsningens ström är stängd");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.err.println("Okänt IO fel vid läsning från fil");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Okänt fel");
+            e.printStackTrace();
         }
         return customerList;
     }
@@ -37,8 +45,12 @@ public class IOUtil {
             writer.write(customer.substring(customer.indexOf("\t") + 1, customer.lastIndexOf("\t")) +
                     "\t" + dateTime +"\n");
             writer.flush();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
+        } catch (IOException e) {
+            System.err.println("Okänt fel vid utskrift till fil");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.err.println("Okänt fel");
+            e.printStackTrace();
         }
     }
 }
