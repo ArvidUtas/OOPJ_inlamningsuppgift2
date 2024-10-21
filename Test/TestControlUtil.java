@@ -36,4 +36,13 @@ public class TestControlUtil {
                 cu.searchList(customerList, incorrectUser));
         assertNotEquals(cu.searchList(customerList, expiredUser), cu.searchList(customerList, activeUser));
     }
+
+    @Test
+    void controlMembershipActiveTest () {
+        LocalDate lessThanAYearAgo = LocalDate.now().minusMonths(5);
+        LocalDate moreThanAYearAgo = LocalDate.now().minusYears(2);
+
+        assertTrue(cu.controlMembershipActive(lessThanAYearAgo));
+        assertFalse(cu.controlMembershipActive(moreThanAYearAgo));
+    }
 }

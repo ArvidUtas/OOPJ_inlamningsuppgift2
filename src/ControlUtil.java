@@ -8,19 +8,25 @@ public class ControlUtil {
         String expiredUser = "Före detta medlem";
         String incorrectUser = "Obehörig, alternativt inkorrekt inmatning";
         String toReturn = incorrectUser;
-        LocalDate currentDate = LocalDate.now();
 
             for (Customer c : customerList) {
                 if (c.getName().equalsIgnoreCase(searchedFor) ||
                         c.getIdNumber().equals(searchedFor.replace("-",""))) {
-                    if (currentDate.minusYears(1).isBefore(c.getMembershipPaid())) {
+                    if (controlMembershipActive(c.getMembershipPaid())) {
                         toReturn = (activeUser + c);
-                    } else {
+                    }
+                    else {
                         toReturn = (expiredUser + c);
                     }
                     break;
                 }
             }
         return toReturn;
+    }
+
+    public boolean controlMembershipActive (LocalDate datePaid){
+        LocalDate currentDate = LocalDate.now();
+
+        return currentDate.minusYears(1).isBefore(datePaid);
     }
 }
