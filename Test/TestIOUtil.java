@@ -29,6 +29,7 @@ public class TestIOUtil {
             writer.print("");
             writer.flush();
         } catch (FileNotFoundException e) {
+            System.out.println("File could not be found.");
             e.printStackTrace();
         }
         ioUtil.printToFile(c1.toString(), outPath);
